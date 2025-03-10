@@ -66,6 +66,11 @@ export default async (req, res) => {
   }
 
   try {
+    console.log("🔍 Debug: Checking PAT_1 (GitHub API Token)...");
+    console.log("PAT_1 Token Loaded:", process.env.PAT_1 ? "✅ Loaded" : "❌ Not Found");
+
+    console.log("🔍 Debug: Fetching GitHub Stats for user:", username);
+
     const showStats = parseArray(show);
     const stats = await fetchStats(
       username,
