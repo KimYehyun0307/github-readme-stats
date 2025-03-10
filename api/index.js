@@ -123,13 +123,16 @@ export default async (req, res) => {
         show: showStats,
       }),
     );
-  } catch (err) {
+    } catch (err) {
+    console.error("❌ Error fetching GitHub Stats:", err);
+    
     res.setHeader(
       "Cache-Control",
       `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
         CONSTANTS.ERROR_CACHE_SECONDS
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     ); // Use lower cache period for errors.
+    
     return res.send(
       renderError(err.message, err.secondaryMessage, {
         title_color,
